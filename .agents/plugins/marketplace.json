@@ -1,0 +1,20 @@
+{
+  "name": "intervals-icu-local",
+  "interface": {
+    "displayName": "Intervals.icu Local Plugins"
+  },
+  "plugins": [
+    {
+      "name": "intervals-icu-workout",
+      "source": {
+        "source": "local",
+        "path": "./plugins/intervals-icu-workout"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

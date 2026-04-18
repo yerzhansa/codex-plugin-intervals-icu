@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "intervalsIcuWorkout": {
+      "command": "node",
+      "args": [
+        "./scripts/intervals-icu-workout-server.mjs"
+      ]
+    }
+  }
+}

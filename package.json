@@ -1,0 +1,15 @@
+{
+  "name": "codex-plugin-intervals-icu",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test plugins/intervals-icu-workout/tests/*.test.mjs",
+    "preview": "node plugins/intervals-icu-workout/scripts/workout-cli.mjs preview",
+    "create": "node plugins/intervals-icu-workout/scripts/workout-cli.mjs create",
+    "server": "node plugins/intervals-icu-workout/scripts/intervals-icu-workout-server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
