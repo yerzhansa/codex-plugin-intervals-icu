@@ -68,7 +68,7 @@ const TOOL_DEFINITIONS = [
 
 const INSTRUCTIONS = [
   "Use intervals_get_setup_status when you need to know whether create is configured on this machine.",
-  "If setup is missing and the user wants to create a workout, tell them to run npm run setup in the plugin repo or set INTERVALS_API_KEY and INTERVALS_ATHLETE_ID manually in their Codex local environment.",
+  "If setup is missing and the user wants to create a workout, tell them to run npm run setup in the plugin repo or set INTERVALS_API_KEY and INTERVALS_ATHLETE_ID in Terminal before reopening Codex.",
   "Do not ask the user to paste secrets into chat.",
   "Use intervals_preview_workout for draft or preview requests.",
   "Use intervals_create_workout only when the user clearly wants the workout created in Intervals.icu.",
@@ -120,7 +120,7 @@ async function callTool(name, args = {}) {
     const status = await getIntervalsSetupStatus();
     const text = status.configured
       ? "Intervals.icu setup is ready for create requests on this machine."
-      : `Intervals.icu setup is incomplete. Missing ${status.missingFields.join(" and ")}. Run npm run setup in the plugin repo or set them in your Codex local environment.`;
+      : `Intervals.icu setup is incomplete. Missing ${status.missingFields.join(" and ")}. Run npm run setup in the plugin repo or set them in Terminal, then reopen Codex.`;
     return toolResult(text, status, false);
   }
 

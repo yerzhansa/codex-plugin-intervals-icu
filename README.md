@@ -44,7 +44,10 @@ This will:
 4. Open `Plugins`.
 5. Choose the `Local Plugins` marketplace.
 6. Install `Intervals.icu Workout`.
-7. Before your first create request, either run `npm run setup` in this repo or set `INTERVALS_API_KEY` and `INTERVALS_ATHLETE_ID` manually in your Codex local environment.
+7. Before your first create request, do one of these:
+
+- run `npm run setup` in this repo
+- or set `INTERVALS_API_KEY` and `INTERVALS_ATHLETE_ID` in Terminal, then fully quit and reopen Codex
 
 The checked-in `.agents/plugins/marketplace.json` remains a repo example for development, but the installer writes the user-local marketplace that the current desktop app reliably picks up.
 
@@ -70,7 +73,10 @@ Example:
 ```bash
 export INTERVALS_API_KEY=your-key
 export INTERVALS_ATHLETE_ID=your-athlete-id
+open -a Codex
 ```
+
+If Codex is already open, fully quit it first, then run those commands and reopen Codex.
 
 ### Guided setup
 
@@ -82,7 +88,7 @@ Environment variables still override the saved config if you set both.
 
 ### Ask in chat
 
-Ask in chat if you want help, but the plugin should direct you to `npm run setup` or manual environment variables instead of asking you to paste secrets into chat.
+Ask in chat if you want help, but the plugin should direct you to `npm run setup` or tell you to set the variables in Terminal and reopen Codex. It should not ask you to paste secrets into chat.
 
 ## Local smoke tests
 

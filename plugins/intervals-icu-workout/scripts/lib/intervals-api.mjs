@@ -24,14 +24,14 @@ export async function createIntervalsEvent(eventPayload, config) {
   if (!resolvedConfig.apiKey) {
     throw makeError(
       "missing_api_key",
-      "INTERVALS_API_KEY is not set. Run npm run setup in the plugin repo or set it in your Codex local environment before creating workouts.",
+      "INTERVALS_API_KEY is not set. Run npm run setup in the plugin repo, or set it in Terminal before opening Codex and then try again.",
     );
   }
 
   if (!resolvedConfig.athleteId) {
     throw makeError(
       "missing_athlete_id",
-      "INTERVALS_ATHLETE_ID is not set. Run npm run setup in the plugin repo or set it in your Codex local environment before creating workouts.",
+      "INTERVALS_ATHLETE_ID is not set. Run npm run setup in the plugin repo, or set it in Terminal before opening Codex and then try again.",
     );
   }
 
