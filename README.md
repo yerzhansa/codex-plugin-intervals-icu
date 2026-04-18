@@ -32,22 +32,20 @@ Recommended for new users on Codex Desktop:
 
 ```bash
 npm run install:codex
+npm run setup
 ```
 
-This will:
+These commands will:
 
 - symlink `plugins/intervals-icu-workout` into `~/plugins/intervals-icu-workout`
 - create or update `~/.agents/plugins/marketplace.json`
 - register the plugin under `Local Plugins`
+- prompt for `INTERVALS_API_KEY` and `INTERVALS_ATHLETE_ID`, then save them to local plugin config
 
 3. Fully restart Codex.
 4. Open `Plugins`.
 5. Choose the `Local Plugins` marketplace.
 6. Install `Intervals.icu Workout`.
-7. Before your first create request, do one of these:
-
-- run `npm run setup` in this repo
-- or set `INTERVALS_API_KEY` and `INTERVALS_ATHLETE_ID` in Terminal, then fully quit and reopen Codex
 
 The checked-in `.agents/plugins/marketplace.json` remains a repo example for development, but the installer writes the user-local marketplace that the current desktop app reliably picks up.
 
@@ -61,14 +59,12 @@ Recommended order:
 
 ### Environment variables
 
-- `INTERVALS_API_KEY`
-- `INTERVALS_ATHLETE_ID`
+This does **not** mean "create a `.env` file in this repo". The plugin does not read a repo `.env` file automatically.
 
-Optional environment variables:
+Manual environment variables means:
 
-- `INTERVALS_BASE_URL` — defaults to `https://intervals.icu`
-
-Example:
+1. Open Terminal.
+2. Run:
 
 ```bash
 export INTERVALS_API_KEY=your-key
@@ -76,7 +72,18 @@ export INTERVALS_ATHLETE_ID=your-athlete-id
 open -a Codex
 ```
 
+3. Use Codex after it opens.
+
 If Codex is already open, fully quit it first, then run those commands and reopen Codex.
+
+If you want those variables available every time, add the same `export ...` lines to your shell profile such as `~/.zshrc`, open a new Terminal, and then start Codex from that Terminal.
+
+- `INTERVALS_API_KEY`
+- `INTERVALS_ATHLETE_ID`
+
+Optional environment variables:
+
+- `INTERVALS_BASE_URL` — defaults to `https://intervals.icu`
 
 ### Guided setup
 
