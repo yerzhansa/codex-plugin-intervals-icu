@@ -4,6 +4,7 @@
   "description": "Create structured cycling workouts in Intervals.icu from natural-language prompts.",
   "author": {
     "name": "Yerzhan Sagyt",
+    "email": "yerzhan.st@gmail.com",
     "url": "https://github.com/yerzhansa"
   },
   "homepage": "https://github.com/yerzhansa/codex-plugin-intervals-icu",
@@ -28,11 +29,16 @@
       "Interactive"
     ],
     "websiteURL": "https://github.com/yerzhansa/codex-plugin-intervals-icu",
+    "privacyPolicyURL": "https://github.com/yerzhansa/codex-plugin-intervals-icu",
+    "termsOfServiceURL": "https://github.com/yerzhansa/codex-plugin-intervals-icu",
     "defaultPrompt": [
       "Create 3x15 sweet spot FTP 200 today",
       "Schedule 5x4 VO2max FTP 260 tomorrow",
       "Preview a 90min endurance workout FTP 210"
     ],
-    "brandColor": "#0F766E"
+    "brandColor": "#0F766E",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg",
+    "screenshots": []
   }
 }

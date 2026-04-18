@@ -10,7 +10,7 @@ It is designed for prompts like:
 
 ## What the plugin includes
 
-- A repo-scoped Codex marketplace at `.agents/plugins/marketplace.json`
+- A repo-scoped Codex marketplace example at `.agents/plugins/marketplace.json`
 - A local plugin at `plugins/intervals-icu-workout`
 - An MCP server that exposes preview + create tools
 - A Codex skill that nudges the model toward the right tool and prompt handling
@@ -18,11 +18,35 @@ It is designed for prompts like:
 
 ## Install in Codex
 
-1. Open this repo in Codex.
-2. Open `Plugins`.
-3. Choose the `Intervals.icu Local Plugins` marketplace.
-4. Install `Intervals.icu Workout`.
-5. Make sure `INTERVALS_API_KEY` is available in your Codex local environment.
+This can mostly be automated, but not by `git clone` alone:
+
+- Git does not run repo setup code automatically after clone.
+- Codex Desktop currently installs local plugins from user-local paths under `~/plugins` and `~/.agents/plugins/marketplace.json`, not directly from an arbitrary cloned repo.
+
+So the repo now provides a one-command installer for the user-local registration step.
+
+Recommended for new users on Codex Desktop:
+
+1. Clone this repo locally.
+2. Run:
+
+```bash
+npm run install:codex
+```
+
+This will:
+
+- symlink `plugins/intervals-icu-workout` into `~/plugins/intervals-icu-workout`
+- create or update `~/.agents/plugins/marketplace.json`
+- register the plugin under `Local Plugins`
+
+3. Fully restart Codex.
+4. Open `Plugins`.
+5. Choose the `Local Plugins` marketplace.
+6. Install `Intervals.icu Workout`.
+7. Make sure `INTERVALS_API_KEY` is available in your Codex local environment.
+
+The checked-in `.agents/plugins/marketplace.json` remains a repo example for development, but the installer writes the user-local marketplace that the current desktop app reliably picks up.
 
 Optional environment variables:
 
