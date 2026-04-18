@@ -44,14 +44,45 @@ This will:
 4. Open `Plugins`.
 5. Choose the `Local Plugins` marketplace.
 6. Install `Intervals.icu Workout`.
-7. Make sure `INTERVALS_API_KEY` is available in your Codex local environment.
+7. Before your first create request, either run `npm run setup` in this repo or set `INTERVALS_API_KEY` and `INTERVALS_ATHLETE_ID` manually in your Codex local environment.
 
 The checked-in `.agents/plugins/marketplace.json` remains a repo example for development, but the installer writes the user-local marketplace that the current desktop app reliably picks up.
 
+## Credential setup
+
+Recommended order:
+
+1. `env vars manually`: Best for security. No secret goes into chat history, and you can keep credentials session-only or manage them with your shell / OS secret tools.
+2. `npm run setup`: Best compromise. It prompts in the terminal, avoids chat history, and saves local plugin config to `~/.codex/plugins/intervals-icu-workout/config.json` with `0600` permissions.
+3. `ask in chat`: Ask in chat if you want help, and Codex should tell you to run `npm run setup` or set environment variables manually.
+
+### Environment variables
+
+- `INTERVALS_API_KEY`
+- `INTERVALS_ATHLETE_ID`
+
 Optional environment variables:
 
-- `INTERVALS_ATHLETE_ID` — defaults to `0`
 - `INTERVALS_BASE_URL` — defaults to `https://intervals.icu`
+
+Example:
+
+```bash
+export INTERVALS_API_KEY=your-key
+export INTERVALS_ATHLETE_ID=your-athlete-id
+```
+
+### Guided setup
+
+```bash
+npm run setup
+```
+
+Environment variables still override the saved config if you set both.
+
+### Ask in chat
+
+Ask in chat if you want help, but the plugin should direct you to `npm run setup` or manual environment variables instead of asking you to paste secrets into chat.
 
 ## Local smoke tests
 
@@ -64,7 +95,7 @@ npm run preview -- --request "Create 3x15 sweet spot FTP 200 tomorrow"
 Create the workout in Intervals.icu:
 
 ```bash
-INTERVALS_API_KEY=your-key npm run create -- --request "Create 3x15 sweet spot FTP 200 tomorrow"
+INTERVALS_API_KEY=your-key INTERVALS_ATHLETE_ID=your-athlete-id npm run create -- --request "Create 3x15 sweet spot FTP 200 tomorrow"
 ```
 
 Run tests:

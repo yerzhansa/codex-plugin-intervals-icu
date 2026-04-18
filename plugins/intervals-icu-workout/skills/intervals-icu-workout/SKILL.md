@@ -11,6 +11,7 @@ Use this skill when the user wants Codex to turn a workout request into an Inter
 
 Prefer the bundled MCP tools over manual shell commands:
 
+- `intervals_get_setup_status` to check whether create is configured on this machine
 - `intervals_preview_workout` for draft, preview, or "what would this look like?" requests
 - `intervals_create_workout` for explicit create, add, schedule, save, or push requests
 
@@ -18,9 +19,11 @@ Prefer the bundled MCP tools over manual shell commands:
 
 - If the user is explicitly asking to create or schedule a workout in Intervals.icu, call `intervals_create_workout`.
 - If the user is still deciding, or asks to preview, inspect, or verify the workout first, call `intervals_preview_workout`.
+- Before the first create on a machine, use `intervals_get_setup_status`. If setup is missing, tell the user to run `npm run setup` in the plugin repo or set `INTERVALS_API_KEY` and `INTERVALS_ATHLETE_ID` manually in their Codex local environment, then retry.
 - If the request implies an intensity-based workout type but omits FTP, ask one short follow-up question for FTP.
 - If the user does not specify a date, default to today in the local environment.
 - Keep athlete-facing coaching cues in the chat reply. Do not try to stuff narrative into the tool payload.
+- Do not ask the user to paste API keys into chat.
 
 ## Supported first version
 

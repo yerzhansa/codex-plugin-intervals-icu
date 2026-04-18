@@ -2,6 +2,7 @@
 import readline from "node:readline";
 import { buildWorkoutFromText } from "./lib/workout-engine.mjs";
 import { createIntervalsEvent } from "./lib/intervals-api.mjs";
+import { getIntervalsSetupStatus } from "./lib/intervals-config.mjs";
 
 const PROTOCOL_VERSION = "2025-06-18";
 const SERVER_INFO = {
@@ -10,6 +11,17 @@ const SERVER_INFO = {
 };
 
 const TOOL_DEFINITIONS = [
+  {
+    name: "intervals_get_setup_status",
+    title: "Check Intervals.icu setup",
+    description:
+      "Check whether the plugin already has the Intervals.icu API key and athlete id needed to create workouts on this machine.",
+    inputSchema: {
+      type: "object",
+      properties: {},
+      additionalProperties: false,
+    },
+  },
   {
     name: "intervals_preview_workout",
     title: "Preview Intervals.icu workout",
@@ -55,6 +67,9 @@ const TOOL_DEFINITIONS = [
 ];
 
 const INSTRUCTIONS = [
+  "Use intervals_get_setup_status when you need to know whether create is configured on this machine.",
+  "If setup is missing and the user wants to create a workout, tell them to run npm run setup in the plugin repo or set INTERVALS_API_KEY and INTERVALS_ATHLETE_ID manually in their Codex local environment.",
+  "Do not ask the user to paste secrets into chat.",
   "Use intervals_preview_workout for draft or preview requests.",
   "Use intervals_create_workout only when the user clearly wants the workout created in Intervals.icu.",
   "This server currently supports sweet spot, tempo, threshold, VO2max, endurance, and recovery prompts.",
@@ -101,6 +116,14 @@ function summarizePreview(preview) {
 }
 
 async function callTool(name, args = {}) {
+  if (name === "intervals_get_setup_status") {
+    const status = await getIntervalsSetupStatus();
+    const text = status.configured
+      ? "Intervals.icu setup is ready for create requests on this machine."
+      : `Intervals.icu setup is incomplete. Missing ${status.missingFields.join(" and ")}. Run npm run setup in the plugin repo or set them in your Codex local environment.`;
+    return toolResult(text, status, false);
+  }
+
   if (name === "intervals_preview_workout") {
     const request = coerceString(args.request, "request");
     const date = typeof args.date === "string" ? args.date : undefined;

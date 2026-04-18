@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "install:codex": "node scripts/install-codex-plugin.mjs",
+    "setup": "node scripts/setup-intervals-icu.mjs",
     "test": "node --test plugins/intervals-icu-workout/tests/*.test.mjs",
     "preview": "node plugins/intervals-icu-workout/scripts/workout-cli.mjs preview",
     "create": "node plugins/intervals-icu-workout/scripts/workout-cli.mjs create",
